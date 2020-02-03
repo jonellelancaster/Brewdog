@@ -1,16 +1,18 @@
-
- const search =document.querySelector('#searchForm').addEventListener('submit', function (e) {
+const search =document.querySelector('#searchForm').addEventListener('submit', function (e) {
     e.preventDefault()
-    console.log(e.target.beerName.value)
-    e.target.elements.beerName.value = ''
-})
+    const searchWord = e.target.beerName.value
+
+
+
 
  const ulPlacement = document.getElementById('beerList')
  const ulContainer = document.createElement('ul')
  ulContainer.setAttribute('class', 'ulContainer')
  ulPlacement.appendChild(ulContainer)
 
+ 
  const request = new XMLHttpRequest()
+
  request.addEventListener('readystatechange', (e) => {
      if (e.target.readyState === 4 && e.target.status === 200) {
          const data = JSON.parse(e.target.responseText)
@@ -55,5 +57,8 @@
      }
 
  })
- request.open('GET', 'https://api.punkapi.com/v2/beers?beer_name=' + search)
+
+ request.open('GET', 'https://api.punkapi.com/v2/beers?beer_name=' + searchWord)
  request.send()
+ 
+})
