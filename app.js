@@ -37,7 +37,7 @@ request.addEventListener('readystatechange', (e) => {
             h2.appendChild(beerDescription)
             h2.appendChild(img)
 
-
+        
 
 
         });
@@ -56,27 +56,3 @@ request.send()
 
 
 
-// const filters = {
-//     searchText: ''
-// }
-// document.querySelector('#search-text').addEventListener('input', function (e) {
-//     filters.searchText = e.target.value
-
-// })
-
-// const searchRequest = new XMLHttpRequest()
-
-// request.addEventListener('readystatechange', (e) => {
-//     if (e.target.readyState === 4 && e.target.status === 200) {
-//         const data = JSON.parse(e.target.responseText)
-
-//         console.log(data)
-//     } else if (e.target.readyState === 4) {
-//         const errorMessage = document.createElement('p')
-//         errorMessage.textContent = `Oh No! Something went wrong!`
-//         ulPlacement.appendChild(errorMessage)
-
-//     }
-// })
-// request.open('GET', 'https://api.punkapi.com/v2/beers' + filters)
-// request.send()
