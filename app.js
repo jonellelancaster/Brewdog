@@ -1,11 +1,11 @@
-// Making an HTTP request
 const ulPlacement = document.getElementById('beerList')
-const ulContainer =
-    document.createElement('ul')
+const ulContainer =document.createElement('ul')
 ulContainer.setAttribute('class', 'ulContainer')
-
-
 ulPlacement.appendChild(ulContainer)
+
+// document.querySelector('h2').addEventListener('click', function(e){
+
+// })
 
 const request = new XMLHttpRequest()
 request.addEventListener('readystatechange', (e) => {
@@ -20,22 +20,24 @@ request.addEventListener('readystatechange', (e) => {
             beerName.textContent = beer.name
             h2.setAttribute('class', 'beerContainer')
 
-            //    console.log(beer.description)
-            const beerDescription = document.createElement('p')
-            beerDescription.setAttribute('class', 'beerDescription')
-            beerDescription.textContent = beer.description
 
-            //    console.log(beer.image_url)
-            const img = document.createElement('img')
-            img.setAttribute('class', 'beerImg')
-            img.setAttribute('src', beer.image_url)
-            img.setAttribute('alt', beer.name)
+
+            // //    console.log(beer.description)
+            // const beerDescription = document.createElement('p')
+            // beerDescription.setAttribute('class', 'beerDescription')
+            // beerDescription.textContent = beer.description
+
+            // //    console.log(beer.image_url)
+            // const img = document.createElement('img')
+            // img.setAttribute('class', 'beerImg')
+            // img.setAttribute('src', beer.image_url)
+            // img.setAttribute('alt', beer.name)
 
             ulPlacement.appendChild(beerName)
             ulContainer.appendChild(beerName)
             ulContainer.appendChild(h2)
-            h2.appendChild(beerDescription)
-            h2.appendChild(img)
+            // h2.appendChild(beerDescription)
+            // h2.appendChild(img)
 
         
 
