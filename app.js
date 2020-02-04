@@ -1,5 +1,5 @@
 const ulPlacement = document.getElementById('beerList')
-const ulContainer =document.createElement('ul')
+const ulContainer = document.createElement('ul')
 ulContainer.setAttribute('class', 'ulContainer')
 ulPlacement.appendChild(ulContainer)
 
@@ -19,27 +19,30 @@ request.addEventListener('readystatechange', (e) => {
             const h2 = document.createElement('h2')
             beerName.textContent = beer.name
             h2.setAttribute('class', 'beerContainer')
-
-
-
-            // //    console.log(beer.description)
-            // const beerDescription = document.createElement('p')
-            // beerDescription.setAttribute('class', 'beerDescription')
-            // beerDescription.textContent = beer.description
-
-            // //    console.log(beer.image_url)
-            // const img = document.createElement('img')
-            // img.setAttribute('class', 'beerImg')
-            // img.setAttribute('src', beer.image_url)
-            // img.setAttribute('alt', beer.name)
-
+           
+            beerName.addEventListener('click', function (e) {
+                    console.log('yes')
+                    
+                    
+                    //    console.log(beer.description)
+                    const beerDescription = document.createElement('p')
+                    beerDescription.setAttribute('class', 'beerDescription')
+                    beerDescription.textContent = beer.description
+                    
+                    //    console.log(beer.image_url)
+                    const img = document.createElement('img')
+                    img.setAttribute('class', 'beerImg')
+                    img.setAttribute('src', beer.image_url)
+                    img.setAttribute('alt', beer.name)
+                    
+                    h2.appendChild(beerDescription)
+                    h2.appendChild(img)
+                })
+            
+            
             ulPlacement.appendChild(beerName)
             ulContainer.appendChild(beerName)
             ulContainer.appendChild(h2)
-            // h2.appendChild(beerDescription)
-            // h2.appendChild(img)
-
-        
 
 
         });
@@ -54,7 +57,3 @@ request.addEventListener('readystatechange', (e) => {
 })
 request.open('GET', 'https://api.punkapi.com/v2/beers?page=2&per_page=80')
 request.send()
-
-
-
-
