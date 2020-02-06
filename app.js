@@ -1,51 +1,67 @@
 const ulPlacement = document.getElementById('beerList')
-const ulContainer = document.createElement('ul')
+const ulContainer = document.createElement('ulContainer')
 ulContainer.setAttribute('class', 'ulContainer')
 ulPlacement.appendChild(ulContainer)
 
-// document.querySelector('h2').addEventListener('click', function(e){
 
-// })
 
 const request = new XMLHttpRequest()
+
 request.addEventListener('readystatechange', (e) => {
     if (e.target.readyState === 4 && e.target.status === 200) {
         const data = JSON.parse(e.target.responseText)
         data.forEach(beer => {
 
-            // console.log(beer.name) 
+
             const beerName = document.createElement('li')
             beerName.setAttribute('class', 'beerName')
-            const h2 = document.createElement('h2')
+            const beerContainer = document.createElement('beerContainer')
             beerName.textContent = beer.name
-            h2.setAttribute('class', 'beerContainer')
-           
-            beerName.addEventListener('click', function (e) {
-                    console.log('yes')
-                    
-                    
-                    //    console.log(beer.description)
-                    const beerDescription = document.createElement('p')
-                    beerDescription.setAttribute('class', 'beerDescription')
-                    beerDescription.textContent = beer.description
-                    
-                    //    console.log(beer.image_url)
-                    const img = document.createElement('img')
-                    img.setAttribute('class', 'beerImg')
-                    img.setAttribute('src', beer.image_url)
-                    img.setAttribute('alt', beer.name)
-                    
-                    h2.appendChild(beerDescription)
-                    h2.appendChild(img)
-                })
-            
-            
-            ulPlacement.appendChild(beerName)
-            ulContainer.appendChild(beerName)
-            ulContainer.appendChild(h2)
+            beerContainer.setAttribute('class', 'beerContainer')
 
+
+            //wrapper
+            const wrapper = document.createElement('div')
+            wrapper.setAttribute('class', 'wrapper')
+
+            beerName.addEventListener('click', function (e) {
+                
+                const button= document.createElement('button')
+                button.setAttribute('class', 'button')
+                button.innerHTML="X"
+                
+                
+                
+                //    console.log(beer.description)
+                const beerDescription = document.createElement('p')
+                beerDescription.setAttribute('class', 'beerDescription')
+                beerDescription.textContent = beer.description
+                
+                //    console.log(beer.image_url)
+                const img = document.createElement('img')
+                img.setAttribute('class', 'beerImg')
+                img.setAttribute('src', beer.image_url)
+                img.setAttribute('alt', beer.name)
+                
+                wrapper.appendChild(beerContainer)
+                beerContainer.appendChild(button)
+                beerContainer.appendChild(beerDescription)
+                beerContainer.appendChild(img)
+                
+                button.addEventListener('click', function(e){
+                   const element = document.querySelector('.beerContainer')
+                   element.classList.toggle('beerContainer__hide')
+                })
+        })
+        
+        ulPlacement.appendChild(beerName)
+        ulContainer.appendChild(beerName)
+            ulContainer.appendChild(wrapper)
+            
 
         });
+
+
         console.log(data)
     } else if (e.target.readyState === 4) {
         const errorMessage = document.createElement('p')
