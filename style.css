@@ -13,7 +13,7 @@ html {
     --azureish-white: #E1EFF6;
     --green: #27ae60;
     --paris-green: #49CE81;
-    --mid-green:#47ae72;
+    --mid-green: #47ae72;
     --white-smoke: #F4F4F4;
     --nyanza: #E5FFCD;
     --aero-blue: #d3f1df;
@@ -41,7 +41,7 @@ input {
     padding: 5px;
 }
 
-ul {
+.beerName {
     list-style-type: none;
 }
 
@@ -51,12 +51,16 @@ li {
     color: var(--green);
 }
 
+
 .beerContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: solid var(--independence);
     padding: 5px;
+}
+
+.beerContainer__hide{
+    display: none;
 }
 
 .beerDescription {
@@ -72,23 +76,30 @@ li {
     padding: 5px;
     width: 75px;
 }
+
 button {
-	box-shadow:inset 0px 1px 0px 0px var(--nyanza);
-	background:linear-gradient(to bottom, var(--green) 5%, var(--paris-green) 100%);
-	background-color: var(--paris-green);
-	border-radius:6px;
-	border:1px solid var(--green);
-	display:inline-block;
-	cursor:pointer;
-	color: var(--nyanza);
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:5px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px var(--mid-green);
-}
-.IndexB{
-    position: sticky;
+    box-shadow: inset 0px 1px 0px 0px var(--nyanza);
+    background: linear-gradient(to bottom, var(--green) 5%, var(--paris-green) 100%);
+    background-color: var(--paris-green);
+    border-radius: 6px;
+    border: 1px solid var(--green);
+    display: inline-block;
+    cursor: pointer;
+    color: var(--nyanza);
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px var(--mid-green);
 }
 
+
+.wrapper {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid var(--independence);
+    padding: 5px;
+}
