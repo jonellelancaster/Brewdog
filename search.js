@@ -11,54 +11,77 @@ const search =document.querySelector('#searchForm').addEventListener('submit', f
  ulPlacement.appendChild(ulContainer)
 
  
- const request = new XMLHttpRequest()
+ fetch('https://api.punkapi.com/v2/beers?beer_name=' + searchWord)
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
 
- request.addEventListener('readystatechange', (e) => {
-     if (e.target.readyState === 4 && e.target.status === 200) {
-         const data = JSON.parse(e.target.responseText)
+      // Examine the text in the response
+      response.json().then(function(data) {
+        console.log(data);
+        
+        
+        data.forEach(beer => {
+             
+            const beerName = document.createElement("li");
+                    beerName.classList.add("beerName");
+                    const beerContainer = document.createElement("beerContainer");
+                    beerName.textContent = beer.name;
+                    beerContainer.classList.add("beerContainer");
 
-         data.forEach(beer => {
-
-             // console.log(beer.name) 
-             const beerName = document.createElement('li')
-             beerName.setAttribute('class', 'beerName')
-             const h2 = document.createElement('h2')
-             beerName.textContent = beer.name
-             h2.setAttribute('class', 'beerContainer')
-
-             //    console.log(beer.description)
-             const beerDescription = document.createElement('p')
-             beerDescription.setAttribute('class', 'beerDescription')
-             beerDescription.textContent = beer.description
-
-             //    console.log(beer.image_url)
-             const img = document.createElement('img')
-             img.setAttribute('class', 'beerImg')
-             img.setAttribute('src', beer.image_url)
-             img.setAttribute('alt', beer.name)
-
-             ulPlacement.appendChild(beerName)
-             ulContainer.appendChild(beerName)
-             ulContainer.appendChild(h2)
-             h2.appendChild(beerDescription)
-             h2.appendChild(img)
+                    //wrapper
+                    const wrapper = document.createElement("div");
+                    wrapper.classList.add("wrapper");
 
 
+                    const button = document.createElement("button");
+                    button.classList.add("button");
+                    button.textContent = "X";
 
+                    //beerDescription
+                    const beerDescription = document.createElement("p");
+                    beerDescription.classList.add("beerDescription");
+                    beerDescription.textContent = beer.description;
 
-         });
+                    //img
+                    const img = document.createElement("img");
+                    img.classList.add("beerImg");
+                    img.setAttribute("src", beer.image_url);
+                    img.setAttribute("alt", beer.name);
 
-         console.log(data)
-     } else if (e.target.readyState === 4) {
-         const errorMessage = document.createElement('p')
-         errorMessage.textContent = `Oh No! Something went wrong!`
-         ulPlacement.appendChild(errorMessage)
+                    beerName.onclick = function (e) {
+                        /**
+                         * This is all that should happen onclick
+                         */
+                        wrapper.appendChild(beerContainer);
+                        beerContainer.appendChild(button);
+                        beerContainer.appendChild(beerDescription);
+                        beerContainer.appendChild(img);
 
-     }
+                        button.onclick = e => {
+                            // Instead of toggling, remove the created element
+                            const parent = e.target.parentElement;
+                            parent.remove();
+                        };
+                    };
 
- })
+                    ulPlacement.appendChild(beerName);
+                    ulContainer.appendChild(beerName);
+                    ulContainer.appendChild(wrapper);
+                });
 
- request.open('GET', 'https://api.punkapi.com/v2/beers?beer_name=' + searchWord)
- request.send()
- 
-})
+                console.log(data);
+        });
+            
+            
+        })
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+
