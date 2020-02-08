@@ -1,14 +1,15 @@
+const ulPlacement = document.getElementById('beerList')
+const ulContainer = document.createElement('ul')
+ulContainer.setAttribute('class', 'ulContainer')
+ulPlacement.appendChild(ulContainer)
+
 const search =document.querySelector('#searchForm').addEventListener('submit', function (e) {
     e.preventDefault()
     const searchWord = e.target.beerName.value
+  ulContainer.innerHTML=''
 
 
 
-
- const ulPlacement = document.getElementById('beerList')
- const ulContainer = document.createElement('ul')
- ulContainer.setAttribute('class', 'ulContainer')
- ulPlacement.appendChild(ulContainer)
 
  
  fetch('https://api.punkapi.com/v2/beers?beer_name=' + searchWord)
